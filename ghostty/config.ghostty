@@ -1,0 +1,37 @@
+# Ghostty config — see `ghostty +show-config --default --docs` for all options.
+
+# Font: SpaceMono, with Sarabun as fallback for Thai
+font-family = SpaceMono Nerd Font Mono
+font-family = Sarabun
+font-size = 12
+
+# Colors: these are fallbacks; the matugen-generated file below overrides them
+config-file = ?colors
+background = 1a1a1a
+foreground = e6e6e6
+cursor-color = 33ccff
+selection-background = 33ccff
+selection-foreground = 1a1a1a
+# Opacity comes from the shared theme settings (theme/settings.conf)
+config-file = ?../theme/settings.conf
+
+# Glow: draw the cursor trail, then bloom glows text, cursor and trail alike
+custom-shader = shaders/cursor_trail.glsl
+custom-shader = shaders/bloom.glsl
+custom-shader-animation = true
+
+# Window: Hyprland handles borders and tiling
+window-decoration = false
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+confirm-close-surface = false
+# No "configuration reloaded" toast (matugen reloads Ghostty on every wallpaper change)
+app-notifications = no-config-reload
+gtk-single-instance = true
+
+# Behavior
+cursor-style = bar
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+shell-integration-features = no-cursor,sudo,title

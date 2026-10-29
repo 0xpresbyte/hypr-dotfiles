@@ -1,0 +1,76 @@
+# Starship prompt (linked to ~/.config/starship.toml by install.sh).
+#
+# Colors are terminal palette names, not hex: matugen sets the Ghostty palette
+# from the wallpaper (matugen/templates/ghostty-colors), and Ghostty recolors
+# text already on screen when the palette changes, so old prompts follow too.
+#
+#  ╭─  0xpresbyte in ~/Projects/dotfile on  main !1          3s  16:45
+#  ╰─❯
+#
+# Icons are \u escapes (Nerd Font glyphs) so they survive copy/paste.
+
+add_newline = true
+palette = "matugen"
+
+format = """
+[╭─](frame)$os$username $directory$git_branch$git_status
+[╰─](frame)$character"""
+
+right_format = "$cmd_duration$time"
+
+[palettes.matugen]
+accent = "blue"             # palette 4  = primary
+text = "bright-white"       # palette 15 = on_surface
+muted = "white"             # palette 7  = on_surface_variant
+connector = "bright-black"  # palette 8  = outline
+frame = "black"             # palette 0  = surface_container_highest
+error = "red"               # palette 1  = harmonized red
+
+[os]
+disabled = false
+style = "accent"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Arch = "\uf303"
+
+[username]
+show_always = true
+style_user = "bold text"
+style_root = "bold error"
+format = "[$user]($style) "
+
+[directory]
+style = "bold text"
+read_only_style = "muted"
+read_only = " \U000f033e"
+format = "[in](connector) [$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = true
+home_symbol = "~"
+
+[git_branch]
+symbol = "\ue725"
+style = "text"
+format = "[on](connector) [$symbol $branch]($style) "
+
+[git_status]
+style = "muted"
+format = "[($all_status$ahead_behind )]($style)"
+
+[cmd_duration]
+min_time = 2000
+style = "muted"
+format = "[\uf252 $duration]($style)  "
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "frame"
+format = "[\uf017 $time]($style)"
+
+[character]
+success_symbol = "[❯](bold accent)"
+error_symbol = "[❯](bold muted)"  # not `error`: it can be close to `accent`
+vimcmd_symbol = "[❮](bold accent)"

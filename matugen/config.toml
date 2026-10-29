@@ -1,0 +1,37 @@
+# Matugen: generate a Material You palette from the wallpaper and write it
+# into each app's config. Run via ~/.config/hypr/scripts/wallpaper.sh.
+
+[config]
+
+# Extra hues for the terminal's ANSI palette, harmonized toward the wallpaper.
+[config.custom_colors]
+red = "#e06c75"
+green = "#98c379"
+yellow = "#e5c07b"
+blue = "#61afef"
+magenta = "#c678dd"
+cyan = "#56b6c2"
+
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hyprland-colors.lua"
+output_path = "~/.config/hypr/colors.lua"
+post_hook = "hyprctl reload >/dev/null"
+
+[templates.ghostty]
+input_path = "~/.config/matugen/templates/ghostty-colors"
+output_path = "~/.config/ghostty/colors"
+post_hook = "pkill -USR2 -x ghostty || true"
+
+# JSON outside the shell dir: Quickshell's Colors.qml reads it live, so a new
+# palette doesn't trigger a full shell reload (which would close open popups).
+[templates.quickshell]
+input_path = "~/.config/matugen/templates/quickshell-colors.json"
+output_path = "~/.local/state/quickshell/colors.json"
+
+[templates.gtk3]
+input_path = "~/.config/matugen/templates/gtk.css"
+output_path = "~/.config/gtk-3.0/gtk.css"
+
+[templates.gtk4]
+input_path = "~/.config/matugen/templates/gtk.css"
+output_path = "~/.config/gtk-4.0/gtk.css"
